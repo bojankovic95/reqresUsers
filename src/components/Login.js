@@ -1,23 +1,12 @@
 import React, {useState} from 'react';
 import '../App.css';
 import PropTypes from 'prop-types';
-
-async function loginUser(credentials, setToken) {
-    console.log(JSON.stringify(credentials));
-    return fetch('https://reqres.in/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(res => res.json())
-      .then(data => setToken(data.token))
-   }
+import LoginButton from './LoginButton';
 
 export default function Login( {setToken} ) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [errorMessage, setError] = useState("")
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -27,10 +16,22 @@ export default function Login( {setToken} ) {
         }, setToken);
       }
 
+    async function loginUser(credentials, setToken) {
+    return fetch('https://reqres.in/api/login', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(res => res.json())
+        .then(data => data.token !== undefined ? setToken(data.token) : setError('Incorrect user or password'))
+    }
+
   return(
     <div className="login-wrapper">
-    <h1 className='loginTitle'>Please Log In</h1>
         <form onSubmit={handleSubmit} className="loginForm">
+            <h1 className='loginTitle'>Please Log In</h1>
             <label className='formLabel'>
                 <p className='formLabelTitle'>Username</p>
                 <input className='formInput'  type="text" onChange={e => setUserName(e.target.value)} />
@@ -40,14 +41,15 @@ export default function Login( {setToken} ) {
                 <input className='formInput' type="password" onChange={e => setPassword(e.target.value)} />
             </label>
             <div>
-                <button type="submit" className='formButton'>Log in</button>
+                <LoginButton value={"Log in"} />
             </div>
+            <p className='errorMessage'>{errorMessage}</p>
         </form>
     </div>
   )
 }
 
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
-  }
+// Login.propTypes = {
+//     setToken: PropTypes.func.isRequired
+//   }
 

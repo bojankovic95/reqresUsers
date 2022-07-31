@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import useToken from './useToken';
+import React, {useState} from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import '../App.css'
+import { useNavigate } from "react-router-dom";
+import LoginButton from './LoginButton';
 
 export default function CreateUserForm() {
 
@@ -10,7 +12,7 @@ export default function CreateUserForm() {
     const [email, setEmail] = useState("");
     const [date, setDate] = useState(new Date());
     const [message, setMessage] = useState("");
-    // const [startDate, setStartDate] = useState(new Date());
+    const navigate = useNavigate();
 
     let handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,7 +30,7 @@ export default function CreateUserForm() {
             }),
           });
 
-          console.log(res);
+          console.log(name, lastName, email, date);
 
           if (res.status === 201) {
             setName("");
@@ -44,32 +46,47 @@ export default function CreateUserForm() {
         }
     }
   return(
+    <>
     <div className="App">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          placeholder="Name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          value={lastName}
-          placeholder="Last Name"
-          onChange={(e) => setLastName(e.target.value)}
-        />
-        <input
-          type="email"
-          value={email}
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <DatePicker selected={date} onChange={(date) => setDate(date)} />
+      <button className='ctrlButton buttonsWrapper' onClick={() => navigate("/")}>Home</button>
+        <form onSubmit={handleSubmit} className="loginForm">
+          <input
+            className='formInput'
+            type="text"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+            required 
+          />
+          <input
+            className='formInput'
+            type="text"
+            value={lastName}
+            placeholder="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
+            required 
+          />
+          <input
+            className='formInput'
+            type="email"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            required 
+          />
+          <DatePicker 
+            className='formInput' 
+            selected={date}
+            onChange={(date) => setDate(date)} 
+            required 
+          />
 
-        <button type="submit">Create</button>
+          {/* <button className='formButton' type="submit">Add user</button> */}
+          <LoginButton value={"Add user"} />
 
         <div className="message">{message ? <p>{message}</p> : null}</div>
       </form>
     </div>
+    </>
     );
 }

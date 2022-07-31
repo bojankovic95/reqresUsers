@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -17,7 +17,6 @@ function App() {
 
   return (
     <div className="wrapper">
-      <h1>Application</h1>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
