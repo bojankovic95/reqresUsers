@@ -42,7 +42,7 @@ export default function CreateUserForm() {
             setMessage("Some error occured");
           }
         } catch (err) {
-          console.log(err);
+          console.log(err.message);
         }
     }
   return(
@@ -81,7 +81,6 @@ export default function CreateUserForm() {
             required 
           />
 
-          {/* <button className='formButton' type="submit">Add user</button> */}
           <LoginButton value={"Add user"} />
 
         <div className="message">{message ? <p>{message}</p> : null}</div>

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url('./assets/images/back.jpeg');
+  background-image: url('./assets/images/back2.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   width: 100vw;
@@ -15,6 +15,7 @@
     width: fit-content;
     margin: auto;
     margin-bottom: 30px;
+    color: white;
 }
 
 .loginForm{
@@ -37,6 +38,9 @@
   width: 200px;
   margin: auto;
   margin-top: 15px;
+  color: white;
+  font-weight: 500;
+
 }
 
 .formInput{
@@ -116,14 +120,16 @@
   font-size: 16px;
   line-height: 22px;
   margin: 0;
-  width: 100px;
+  width: 200px;
   margin-right: 50px;
+  font-weight: 700;
+  color: white;
 }
 
 .wrapper{
   width: 100vw;
   height: 100vh;
-  background-image: url('./assets/images/back.jpeg');
+  background-image: url('./assets/images/back2.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
   padding: 0;
@@ -177,7 +183,7 @@
   height:40px;
   border-width:1px;
   color:#fff;
-  border-color:#83c41a;
+  border-color:#70b500;
   font-weight:bold;
   border-top-left-radius:6px;
   border-top-right-radius:6px;
@@ -185,7 +191,7 @@
   border-bottom-right-radius:6px;
   box-shadow:inset 0px 1px 0px 0px #d9fbbe;
   text-shadow:inset 0px 1px 0px #86ae47;
-  background:linear-gradient(#b8e356, #a5cc52);
+  background:linear-gradient(#a5d730, #83b616);
   margin-right: 20px;
 }
 
@@ -193,7 +199,7 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  background-color: rgb(101, 0, 0);
+  background-color: rgba(15, 0, 98, 0.888);
   width: 300px;
   height: 300px;
   transform: translate(-50%, -50%);
@@ -261,7 +267,7 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(102, 102, 102, 0.4);
+  background: rgba(0, 0, 0, 0.868);
   z-index: 3;
 
   animation-name: fade;
@@ -287,3 +293,28 @@
     opacity: 1;
   }
 }
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 7px solid #f3f3f3; 
+  border-top: 7px solid #000000;
+  border-radius: 50%;
+  animation: spinner .8s linear infinite;
+}
+
+.spinner-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 450px;
+}
+

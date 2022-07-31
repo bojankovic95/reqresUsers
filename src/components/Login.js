@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import '../App.css';
-import PropTypes from 'prop-types';
 import LoginButton from './LoginButton';
 
 export default function Login( {setToken} ) {
@@ -10,7 +9,7 @@ export default function Login( {setToken} ) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUser({
+        await loginUser({
           email:username,
           password
         }, setToken);
@@ -30,26 +29,23 @@ export default function Login( {setToken} ) {
 
   return(
     <div className="login-wrapper">
-        <form onSubmit={handleSubmit} className="loginForm">
-            <h1 className='loginTitle'>Please Log In</h1>
-            <label className='formLabel'>
-                <p className='formLabelTitle'>Username</p>
-                <input className='formInput'  type="text" onChange={e => setUserName(e.target.value)} />
-            </label>
-            <label className='formLabel'>
-                <p className='formLabelTitle'>Password</p>
-                <input className='formInput' type="password" onChange={e => setPassword(e.target.value)} />
-            </label>
-            <div>
-                <LoginButton value={"Log in"} />
-            </div>
-            <p className='errorMessage'>{errorMessage}</p>
-        </form>
+      <form onSubmit={handleSubmit} className="loginForm">
+          <h1 className='loginTitle'>Please Log In</h1>
+          <label className='formLabel'>
+              <p className='formLabelTitle'>Username</p>
+              <input className='formInput'  type="text" onChange={e => setUserName(e.target.value)} />
+          </label>
+          <label className='formLabel'>
+              <p className='formLabelTitle'>Password</p>
+              <input className='formInput' type="password" onChange={e => setPassword(e.target.value)} />
+          </label>
+          <div>
+             <LoginButton value={"Log in"} />
+          </div>
+          <p className='errorMessage'>{errorMessage}</p>
+      </form>
     </div>
   )
 }
 
-// Login.propTypes = {
-//     setToken: PropTypes.func.isRequired
-//   }
 
