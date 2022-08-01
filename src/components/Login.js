@@ -29,6 +29,7 @@ export default function Login( {setToken} ) {
 
   return(
     <div className="login-wrapper">
+      <p className='white'>Demo login credentials: Username: eve.holt@reqres.in Password: cityslicka</p>
       <form onSubmit={handleSubmit} className="loginForm">
           <h1 className='loginTitle'>Please Log In</h1>
           <label className='formLabel'>
