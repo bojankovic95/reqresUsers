@@ -60,12 +60,14 @@ export default function Home() {
   const toggleTime = () => {
     const newToggle = !toggle;
     setToggle(newToggle);
-    newToggle ? setToggleText("Sort by name") : setToggleText("Sort by ID");
+    newToggle 
+      ? setToggleText("Sort by name") 
+      : setToggleText("Sort by ID");
     newToggle
       ? setSortText("Users sorted by ID")
       : setSortText("Users sorted by name");
-    setPeople((preData) =>
-      preData.sort((a, b) => {
+    setPeople((data) =>
+      data.sort((a, b) => {
         return newToggle ? a.id - b.id : a.first_name > b.first_name ? 1 : -1;
       })
     );
